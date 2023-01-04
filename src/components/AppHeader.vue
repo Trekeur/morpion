@@ -7,17 +7,17 @@ export default {
         let grid = Array(9)
         // for (let i = 0; i < array.length; i++) {
 
-        //     grid[i] = ""
+        //     grid[i] = "" 
         // }
-        grid["bot-left"] = ""
-        grid["bot-middle"] = ""
-        grid["bot-right"] = ""
-        grid["middle-left"] = ""
+        grid["bot-left"]      = ""
+        grid["bot-middle"]    = ""
+        grid["bot-right"]     = ""
+        grid["middle-left"]   = ""
         grid["middle-middle"] = ""
-        grid["middle-right"] = ""
-        grid["top-left"] = ""
-        grid["top-middle"] = ""
-        grid["top-right"] = ""
+        grid["middle-right"]  = ""
+        grid["top-left"]      = ""
+        grid["top-middle"]    = ""
+        grid["top-right"]     = ""
         return { winner: " ", count: 0, grid }
     },
 
@@ -25,12 +25,14 @@ export default {
         winnerEvent(event) {
             this.count++
             if (this.count%2 == 0) {
-                this.grid[event.target.id] = "X"
+                this.grid[event.target.id] = "x"
             }
             else {
-                this.grid[event.target.id] = "O"
+                this.grid[event.target.id] = "o"
             }
             console.log(this.grid[event.target.id])
+            console.log( "avant la condition")
+
 
             if (
                 (this.grid["top-left"] === this.grid["top-middle"]    && this.grid["top-middle"]    === grid["top-right"] && this.grid["top-left"] != "") ||
@@ -48,6 +50,7 @@ export default {
                 this.winner = this.grid[event.target.id]
                 this.grid = null
             }
+            console.log("après la condition")
         }
 
     }
@@ -74,7 +77,9 @@ export default {
                 <button class="button" id="bot-middle" @click="winnerEvent($event)">{{ this.grid["bot-middle"] }}</button>
                 <button class="button" id="bot-right"  @click="winnerEvent($event)">{{ this.grid["bot-right"] }}</button>
             </div>
+            
         </div>
+    
 </template>
 
 <style scoped>
