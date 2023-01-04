@@ -35,9 +35,9 @@ export default {
 
 
             if (
-                (this.grid["top-left"] === this.grid["top-middle"]    && this.grid["top-middle"]    === grid["top-right"] && this.grid["top-left"] != "") ||
-                (this.grid["top-left"] === this.grid["middle-middle"] && this.grid["middle-middle"] === grid["bot-right"] && this.grid["top-left"] != "") ||
-                (this.grid["top-left"] === this.grid["middle-left"]   && this.grid["middle-left"]   === grid["bot-left"] && this.grid["top-left"] != "") ||
+                (this.grid["top-left"] === this.grid["top-middle"]    && this.grid["top-middle"]    === this.grid["top-right"] && this.grid["top-left"] != "") ||
+                (this.grid["top-left"] === this.grid["middle-middle"] && this.grid["middle-middle"] === this.grid["bot-right"] && this.grid["top-left"] != "") ||
+                (this.grid["top-left"] === this.grid["middle-left"]   && this.grid["middle-left"]   === this.grid["bot-left"] && this.grid["top-left"] != "") ||
                 //--
                 (this.grid["middle-middle"] === this.gird["middle-left"] && this.grid["middle-middle"] === grid["middle-right"] && this.grid["middle-middle"] != "") ||
                 (this.grid["middle-middle"] === this.gird["middle-top"]  && this.grid["middle-middle"] === grid["middle-bot"] && this.grid["middle-middle"] != "") ||
@@ -61,11 +61,11 @@ export default {
 <template>
 
 
-        <div id="Jeu">
+        <div id="Jeu" class="button"  v-if="grid != null">
             <div>
                 <button class="button" id="top-left"   @click="winnerEvent($event)"> {{ this.grid["top-left"] }} </button>
                 <button class="button" id="top-middle" @click="winnerEvent($event)"> {{ this.grid["top-middle"] }}</button>
-                <button class="button" id="top-right"  @click="winnerEvent($event)"> {{ grid["top-right"] }} </button>
+                <button class="button" id="top-right"  @click="winnerEvent($event)"> {{ this.grid["top-right"] }} </button>
             </div>
             <div>
                 <button class="button" id="middle-left"   @click="winnerEvent($event)">{{ this.grid["middle-left"] }}</button>
@@ -77,9 +77,12 @@ export default {
                 <button class="button" id="bot-middle" @click="winnerEvent($event)">{{ this.grid["bot-middle"] }}</button>
                 <button class="button" id="bot-right"  @click="winnerEvent($event)">{{ this.grid["bot-right"] }}</button>
             </div>
-            
+           
         </div>
-    
+        <div v-else>
+            {{ winner }} Victoire
+            <button id="reload" @click="reload">RELOAD PAGE</button>
+          </div>
 </template>
 
 <style scoped>
